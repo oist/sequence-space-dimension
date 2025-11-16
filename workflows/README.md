@@ -1,0 +1,109 @@
+# Workflows
+
+workflows/                
+   ├── pipeline.sh           # main pipline code
+   └── slurm/                # *.sh SLURM submit scripts
+
+## slurm/ - folder with slurm run scripts
+
+### ncbi_vertebrates/ 
+
+- Get pairwise distances
+ncbi_vertebrates/get_pdistm_unique_ncbivert_part1.sh
+ncbi_vertebrates/get_pdistm_unique_ncbivert_part2.sh
+ncbi_vertebrates/pairwise_ali_unique_pdistm_sample616_ogs.sh
+
+- Calculate correlation dimension
+ncbi_vertebrates/dimension_max_k_uniq_range_from_data_0.3_0.4_parts10.sh
+ncbi_vertebrates/dimension_max_k_uniq_range_from_data_0.5_parts10.sh
+
+- Calculate dN/dS
+ncbi_vertebrates/NCBI_gap_stop_codons_for_paml.sh
+ncbi_vertebrates/ncbi_vert_dnds_universal_nosplit_ng86_yn00_no_paralogs_14495.sh
+ncbi_vertebrates/ncbi_vert_14494_parse_yn00_dnds_ynouts.sh
+ncbi_vertebrates/ncbi_vert_14494_parse_ng86_dnds_ynouts.sh
+
+### ncbi_enterobacterales/ 
+
+- Create alignemnts 
+ncbi_enterobacterales/enterobacterales_mmseqs_find_ogs_id0.5_cov0.8.sh
+ncbi_enterobacterales/align_aa_enterobacterales200seqs_muscle_remaining.sh
+ncbi_enterobacterales/align_aa_enterobacterales200seqs_muscle_remaining27.sh
+ncbi_enterobacterales/align_aa_enterobacterales200seqs_muscle.sh
+
+- Get pairwise distances
+ncbi_enterobacterales/entero_2598_200seqs_pairwise_distance_ld_hd.sh
+ncbi_enterobacterales/pairwise_ali_unique_pdistm_sample122_ogs.sh
+
+- Calculate correlation dimension
+ncbi_enterobacterales/dimension_max_k_uniq_range_from_data_0.3_0.4_ld.sh
+ncbi_enterobacterales/dimension_max_k_uniq_range_from_data_0.5_ld.sh
+
+- Calculate dN/dS
+ncbi_enterobacterales/entero_2605_200seqs_report_gaps_aa_to_nt_gap_stops_ali.sh
+ncbi_enterobacterales/entero_2597_200seqs_dnds_yn00_ng86.sh
+ncbi_enterobacterales/entero_2597_200seqs_dnds_yn00_ng86_remaining7.sh
+ncbi_enterobacterales/entero_2597_200seqs_parse_dnds_yn00_ng86.sh
+
+
+### eggnog_gammaproteobacteria/
+
+- Create alignemnts and get aligenment statistics
+eggnog_gammaproteobacteria/align_translated_nt_over200seqs_1585_and_5rem.sh
+eggnog_gammaproteobacteria/align_translated_nt_under200seqs_1196.sh
+eggnog_gammaproteobacteria/report_gaps_to_nt_from_translated_aligned_2778.sh
+eggnog_gammaproteobacteria/align_translated_nt_remaining_7.sh
+eggnog_gammaproteobacteria/eggnog_gamma_2784_seq_length_invar_sites_gap_content_from_fasta.sh
+
+- Get pairwise distances
+eggnog_gammaproteobacteria/gammaproteo_raw_aa2784_pairwise_distance.sh
+eggnog_gammaproteobacteria/pairwise_ali_unique_pdistm_sample134_ogs.sh
+
+- Calculate correlation dimension
+eggnog_gammaproteobacteria/dimension_max_k_uniq_reg_range_from_data_0.3_0.4_parts10.sh
+eggnog_gammaproteobacteria/dimension_max_k_uniq_reg_range_from_data_0.5_parts10.sh
+
+- Calculate dN/dS
+eggnog_gammaproteobacteria/eggnog_gamma_from_nt_dnds_yn00_2771.sh
+eggnog_gammaproteobacteria/eggnog_gamma_from_nt_dnds_yn00_remaining_11.sh
+
+- Use HMMER to link Enterobacterales and Gammaproteobacteria
+eggnog_gammaproteobacteria/hmmer_link_gamma_to_entero_e-10_all2781.sh
+eggnog_gammaproteobacteria/hmmer_link_gamma_to_entero_e-10_remaining2181_split4.sh
+
+
+### cog_full/
+
+- Pairwise align and get pairwise distances
+cog_full/pairwise_ali_hamming_distance_cogs_continue_rem_rest76.sh
+cog_full/pairwise_ali_hamming_distance_cogs_continue_rem.sh
+cog_full/pairwise_ali_hamming_distance_cogs_continue.sh
+cog_full/pairwise_ali_hamming_distance_cogs_rm_long.sh
+cog_full/pairwise_ali_hamming_distance_cogs.sh
+
+- Calculate correlation dimension
+cog_full/dim_range_from_data_from_pairwise_ali.sh
+
+### simulate_evol/
+
+- Scripts to generate protein families and distance matrices for resulting sequences
+simulate_evol/simulate_protein_family_evol_diff_notree_tree_cont_f_longleaves_w_anc_distm.sh
+simulate_evol/simulate_protein_family_evol_diff_notree_tree_cont_f_normshortleaves_w_anc_distm.sh
+simulate_evol/simulate_protein_family_evol_diff_notree_tree_cont_f_notree_w_anc_distm.sh
+simulate_evol/simulate_protein_family_evol_diff_notree_tree_cont_f_notree0.7_10reps_w_anc_distm.sh
+
+- Rename SimuID to OG_id
+simulate_evol/filter_duplicated_seqs_from_simu_pdistm_rename_and_zip.sh
+
+- Calculate correlation dimension
+simulate_evol/get_dim_range_from_data_and_dnds_from_tree.sh
+simulate_evol/get_dim_unique_03_range_from_data_w_anc.sh
+simulate_evol/get_dim_unique_range_from_data_0304_w_anc.sh
+
+- Calculate dN/dS
+    dN/dS from sequences
+simulate_evol/dnds_simulated_final_notree_tree_w_epi_paml.sh
+simulate_evol/parse_dnds_yn00_ng86_simulated_frac_final.sh
+    dN/dS from tree
+simulate_evol/get_dnds_from_tree_epistasis_notree_scaling_4845.sh
+
