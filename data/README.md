@@ -20,7 +20,7 @@ This folder contains summary data tables which can be used to replicate plots.
     - Number of sequences
         - num_of_seq_aa_orig 
         - num_of_seq_aa_unique
-    - Alignemnt and sequence length
+    - Alignment and sequence length
         - ali_len
         - mean_seq_len_orig
         - median_seq_len_orig
@@ -176,7 +176,7 @@ This folder contains summary data tables which can be used to replicate plots.
 - dim_diff_reg_range/simu_kcoefs_mult_ali_max_k_range_from_data_non_log_0.3_20.coefnr
 - dim_diff_reg_range/simu_kcoefs_mult_ali_max_k_range_from_data_non_log_0.4_20.coefnr
 
-### Distances from pairwise alignemnts
+### Distances from pairwise alignments
 
 - dim_diff_reg_range/entero_pairali_kcoefs_max_k_range_from_data_non_log_0.5_20.coefnr
 - dim_diff_reg_range/gamma_pairali_kcoefs_max_k_range_from_data_non_log_0.5_20.coefnr
@@ -201,20 +201,20 @@ Raw data can be found at Zenodo DOI:10.5281/zenodo.17623392
 Raw data contains:
 
 **Vertebrates dataset - ncbi_vertebrates_data.zip**
-- Amino acid alignemnts (created as a part of this project)
-- Nucleotide alignemnts for dN/dS calculation (created as a part of this project)
+- Amino acid alignments (created as a part of this project)
+- Nucleotide alignments for dN/dS calculation (created as a part of this project)
 - Raw amino acid sequences of sample 616 protein families used for pairwise alignments 
 (unlike other datasets can't be obtained by removing the gaps from alignments due to use of 
 MACSE for codon alignment)
 - Species annotation file for sequence ids 
 
 **Enterobacterales dataset - ncbi_enterobacterales_data.zip**
-- Amino acid alignemnts (created as a part of this project)
-- Nucleotide alignemnts for dN/dS calculation (created as a part of this project)
+- Amino acid alignments (created as a part of this project)
+- Nucleotide alignments for dN/dS calculation (created as a part of this project)
 - Species annotation file for sequence ids 
 
 **Gammaproteobacteria dataset - eggnog_gammaproteobacteria.zip**
-- Nucleotide alignemnts for dN/dS calculation (created as a part of this project)
+- Nucleotide alignments for dN/dS calculation (created as a part of this project)
 
 **COGs**
 - Pairwise distance matrices (sequences where pairwise-aligned "on the run" while distances were 
@@ -222,5 +222,5 @@ calculated, see ../src/hamming_distance_pairwise_ali_universal.py)
 
 
 Other data not provided (pairwise distances, dN/dS, alignment statistics) can be calculated from
-provided/publicly available alignments (as is the case for Gammaproteobacteria EggNOG alignements) -
+provided/publicly available alignments (as is the case for Gammaproteobacteria EggNOG alignments) -
 see ../workflows/pipeline.sh for more details.
