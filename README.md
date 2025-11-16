@@ -6,7 +6,7 @@ Repository structure:
 - LICENSE
 - environment.yml          
 - data/ - summary tables, small example data
-- notebooks/ - Jupyter notebooks to reproduce all figures summary tables
+- notebooks/ - Jupyter notebooks to reproduce all figures from summary tables
 - params/ - run parameters for simulations
 - src/ - all source code
 - workflows/ - workflows the way they were run
