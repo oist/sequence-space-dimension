@@ -12,7 +12,6 @@
 - get_usage_ali_seq_len_invar_sites_gap_frac.py
 - seq_length_invar_sites_gap_content_from_fasta.py
 - get_mean_median_seq_len_from_fasta.py
-- get_ld_mean_median.py (older version)
 
 ## Pairwise distances calculation & handling
 - hamming_distance_multiple_ali_universal.py
@@ -22,6 +21,7 @@
 - filter_identical_seqs_from_pdistm.py
 - get_pdist_distribution_plot.py
 - get_ld_mean_median_var.py
+- get_ld_mean_median.py
 - subsample_pdistm_matrix.py
 
 ## Correlation dimension
