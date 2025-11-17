@@ -12,5 +12,5 @@ Repository structure:
 - workflows/ - workflows the way they were run
 
 
-Raw data can be found at Zenodo DOI:10.5281/zenodo.17623392
+Raw data can be found at Zenodo DOI:10.5281/zenodo.17623392 (https://zenodo.org/records/17623392).
 (description of the included files is in data/README.md)
