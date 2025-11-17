@@ -1,4 +1,4 @@
-This repository contains the data and code used in the paper "Descent from a common ancestor restricts exploration of protein sequence space"
+This repository contains the data and code used in the paper "Descent from a common ancestor restricts exploration of protein sequence space".
 
 Repository structure:
 
