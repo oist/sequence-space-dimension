@@ -4,9 +4,6 @@
 """
 Script to calculate mean and median sequence length 
 
-Usage:
-python3 hamming_distance_pairwise_ali_universal.py -a natural_FPs_jun2020_aligned.fasta -if gfp/ -wd gfp/
-
 """
 
 import sys
