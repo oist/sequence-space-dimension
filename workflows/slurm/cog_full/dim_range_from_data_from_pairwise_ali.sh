@@ -4,7 +4,9 @@
 
 #Give your job a name
 #SBATCH --job-name=dim_ur_cogs_full
-#SBATCH --output=/flash/KondrashovU/ladaisa/logs/cogs/full/pairali_dimension_ur_uniq.log
+##SBATCH --output=/flash/KondrashovU/ladaisa/logs/cogs/full/pairali_dimension_ur_uniq.log
+##SBATCH --output=/flash/KondrashovU/ladaisa/logs/cogs/full/pairali_dimension_ur_uniq_308.log
+#SBATCH --output=/flash/KondrashovU/ladaisa/logs/cogs/full/pairali_dimension_ur_uniq_208.log
 
 #Specify time limit; max is 10 days, i.e. 240 hours
 #SBATCH --time=2:00:00
@@ -32,10 +34,12 @@ ml python/3.11.4
 
 INP=/bucket/KondrashovU/seq_space/cogs/full/
 OUT=/flash/KondrashovU/ladaisa/cogs/full/
-
+#INF=pairali_done30102025.list
+#INF=pairali_done12112025_last308.list
+INF=pairali_done20012026_last208.list
 
 while read -r INFILE; do 
 	python3 /bucket/KondrashovU/seq_space/scripts/dimension_steepest_curve_from_matrix.py -f $INFILE -i $OUT/muscle/pdistm_matrices_unique_pairwise_ali/ -of $OUT/kcoefs_mult_ali_max_k_range_from_data_pairali/ -op $OUT/kcoefs_mult_ali_max_k_range_from_data_pairali_plots/ -w 0.5 -n 20 -r True -p True -s True -m 'max' -l False
-done < $INP/pairali_done30102025.list
+done < $INP/$INF
 
 

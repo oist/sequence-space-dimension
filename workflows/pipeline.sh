@@ -1025,12 +1025,10 @@ sbatch cogs/full/slurm_scripts/pairwise_ali_hamming_distance_cogs_rm_long_rest53
 
 
 #get sample of pairwise distances for the distribution plot
-sed 's/^/\/flash\/KondrashovU\/ladaisa\/cogs\/full\/muscle\/pdistm_matrices_unique_pairwise_ali\//g' pairali_done12112025.list > pairali_done12112025_wpath.list
-sbatch --partition compute -t 10:00:00 -c 1 --mem=100G --output=/flash/KondrashovU/ladaisa/logs/cogs/full/pdistm_hist_0.05.log --job-name=cogsfull_hist005 --wrap "python /bucket/KondrashovU/seq_space/scripts/get_pdist_distribution_plot.py -f /bucket/KondrashovU/seq_space/cogs/full/pairali_done12112025_wpath.list -m True -of /flash/KondrashovU/ladaisa/cogs/full/ -fr 0.05"
-mv /flash/KondrashovU/ladaisa/cogs/full/pairali_done12112025_wpath* .
-cp pairali_done12112025_wpath_5_pairs_hist.pickle ../../compare_all_datasets/
-
-
+sed 's/^/\/flash\/KondrashovU\/ladaisa\/cogs\/full\/muscle\/pdistm_matrices_unique_pairwise_ali\//g' pairali_done20012026.list > pairali_done20012026_wpath.list
+sbatch --partition compute -t 10:00:00 -c 1 --mem=100G --output=/flash/KondrashovU/ladaisa/logs/cogs/full/pdistm_hist_0.05_all.log --job-name=cogsfull_hist005 --wrap "python /bucket/KondrashovU/seq_space/scripts/get_pdist_distribution_plot.py -f /bucket/KondrashovU/seq_space/cogs/full/pairali_done20012026_wpath.list -m True -of /flash/KondrashovU/ladaisa/cogs/full/ -fr 0.05"
+mv /flash/KondrashovU/ladaisa/cogs/full/pairali_done20012026_wpath* .
+cp pairali_done20012026_wpath_5_pairs_hist.pickle ../../compare_all_datasets/
 
 #get max distance
 cd /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/
@@ -1040,8 +1038,16 @@ for matr in *pdistm; do awk -F',' '{for(i=1;i<=NF;i++)if($i>max)max=$i} END{sub(
 cd /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/
 while read -r matr; do awk -F',' '{for(i=1;i<=NF;i++)if($i>max)max=$i} END{sub(/\.pdistm$/, "", FILENAME); print FILENAME "," max}' ${matr} >> /bucket/KondrashovU/seq_space/cogs/full/cogs_full_pairali_max_dist_pdistm_matrices_unique_levenshtein_308.csv; echo $matr; done < /bucket/KondrashovU/seq_space/cogs/full/pairali_done12112025_last308.list &> /bucket/KondrashovU/seq_space/cogs/full/get_max_dist_308.log &
 
+#get max distance for last 208 COGs
+cd /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/
+while read -r matr; do awk -F',' '{for(i=1;i<=NF;i++)if($i>max)max=$i} END{sub(/\.pdistm$/, "", FILENAME); print FILENAME "," max}' ${matr} >> /bucket/KondrashovU/seq_space/cogs/full/cogs_full_pairali_max_dist_pdistm_matrices_unique_levenshtein_208.csv; echo $matr; done < /bucket/KondrashovU/seq_space/cogs/full/pairali_done20012026_last208.list &> /bucket/KondrashovU/seq_space/cogs/full/get_max_dist_208.log &
+
 # get mean, median and variance of LD for all 2520 COGs
 python ../../scripts/get_ld_mean_median_var.py /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/ cogs_full_pairali_unique_levenshtein_2520 > get_ld_mean_median_var_2520.log &
+sed -i 's/\.fasta//g' allstats_mean_median_var_ld_cogs_full_pairali_unique_levenshtein_2520.csv
+
+# get mean, median and variance of LD for all 2728 COGs
+python ../../scripts/get_ld_mean_median_var.py /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/ cogs_full_pairali_unique_levenshtein_2728 > get_ld_mean_median_var_2728.log &
 sed -i 's/\.fasta//g' allstats_mean_median_var_ld_cogs_full_pairali_unique_levenshtein_2520.csv
 
 
@@ -1073,6 +1079,19 @@ sbatch  slurm_scripts/dim_range_from_data_from_pairwise_ali.sh
 cd /flash/KondrashovU/ladaisa/cogs/full/kcoefs_mult_ali_max_k_range_from_data_pairali
 awk 'FNR==1 && NR!=1 {next} {print}' *.coefnr > /bucket/KondrashovU/seq_space/cogs/full/cogs_full_pairali_kcoefs_mult_ali_max_k_range_from_data_non_log_0.5_20_308.coefnr
 
+#get dim for the remaining 208 COGs
+cd /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/
+ls *pdistm > ../done20012026.list
+cd /bucket/KondrashovU/seq_space/cogs/full/
+cp /flash/KondrashovU/ladaisa/cogs/full/muscle/done20012026.list pairali_done20012026.list
+sed -i 's/.fa/.pdistm/g' pairali_done20012026.list 
+grep -v -f pairali_done12112025.list pairali_done20012026.list > pairali_done20012026_last208.list
+sbatch  slurm_scripts/dim_range_from_data_from_pairwise_ali.sh
+
+#concatenate the remaining 208 COGs
+cd /flash/KondrashovU/ladaisa/cogs/full/kcoefs_mult_ali_max_k_range_from_data_pairali
+awk 'FNR==1 && NR!=1 {next} {print}' *.coefnr > /bucket/KondrashovU/seq_space/cogs/full/cogs_full_pairali_kcoefs_mult_ali_max_k_range_from_data_non_log_0.5_20_208.coefnr
+
 
 #----------------4. COGs statistics
 
@@ -1081,7 +1100,14 @@ awk 'FNR==1 && NR!=1 {next} {print}' *.coefnr > /bucket/KondrashovU/seq_space/co
 python ../../scripts/get_mean_median_seq_len_from_fasta.py done30102025_wo_big.list sequences/ cogs_full_pairali_mean_median_seq_len_orig.csv > get_mean_median_seq_len_from_fasta_2212.log &
 
 #get the mean and median of the sequence length (next 308)
+sed 's/pdistm/fa/g' pairali_done12112025_last308.list > pairali_done12112025_last308_fasta.list 
+# the list of COGs and the argument "10000" refers to filtering out any sequences   with length > 10000 in these OGs, 
+#as these sequences were also removed at pairwise alignment step 
 python ../../scripts/get_mean_median_seq_len_from_fasta.py pairali_done12112025_last308_fasta.list sequences/ cogs_full_pairali_mean_median_seq_len_orig_308.csv COG1196,COG2931,COG3170,COG3210,COG3319,COG3321,COG5276,COG5281 10000 > get_mean_median_seq_len_from_fasta_308.log &
+
+#get the mean and median of the sequence length (last 208)
+sed 's/pdistm/fa/g' pairali_done20012026_last208.list > pairali_done20012026_last208_fasta.list 
+python ../../scripts/get_mean_median_seq_len_from_fasta.py pairali_done20012026_last208_fasta.list sequences/ cogs_full_pairali_mean_median_seq_len_orig_208.csv > get_mean_median_seq_len_from_fasta_208.log &
 
 #get number of unique sequences (rows in pdistm)
 cd /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/
@@ -1097,6 +1123,12 @@ while read -r f; do echo "$f,$(wc -l < "$f")"; done < /bucket/KondrashovU/seq_sp
 cd /bucket/KondrashovU/seq_space/cogs/full/
 sed -i 's/.pdistm//g' num_of_seq_unique_cogs308.csv 
 
+#get number of unique sequences (rows in pdistm) (last 208)
+cd /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/
+while read -r f; do echo "$f,$(wc -l < "$f")"; done < /bucket/KondrashovU/seq_space/cogs/full/pairali_done20012026_last208.list > /bucket/KondrashovU/seq_space/cogs/full/num_of_seq_unique_cogs208.csv
+
+cd /bucket/KondrashovU/seq_space/cogs/full/
+sed -i 's/.pdistm//g' num_of_seq_unique_cogs208.csv 
 
 #COGs with too long sequences: COG3170, COG3319, COG5276, COG5281, COG1196, COG2931, COG3210, COG3321
 #COGs with too many sequences (20000+): COG1028, COG0583
