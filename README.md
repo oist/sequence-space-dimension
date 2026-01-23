@@ -6,11 +6,12 @@ Repository structure:
 - LICENSE
 - environment.yml          
 - data/ - summary tables, small example data
+- figures/ - final versions of all figures and images used in the paper
 - notebooks/ - Jupyter notebooks to reproduce all figures from summary tables
 - params/ - run parameters for simulations
 - src/ - all source code
 - workflows/ - workflows the way they were run
 
 
-Raw data can be found at Zenodo DOI:10.5281/zenodo.17623392 (https://zenodo.org/records/17623392).
+Raw data can be found at Figshare DOI:10.6084/m9.figshare.31132711 (https://doi.org/10.6084/m9.figshare.31132711).
 (description of the included files is in data/README.md)

@@ -424,6 +424,9 @@ while read -r line; do grep '>' fastas_200seqs/$line > tmp.ids; sed -i 's/^>//g'
 sbatch slurm_scripts/entero_2605_200seqs_report_gaps_aa_to_nt_gap_stops_ali.sh
 mv /flash/KondrashovU/ladaisa/entero/NT_alignments_no_stop_codons/ dnds/ &
 
+#zip for Zenodo
+zip -r ../eggnog_gammaproteobacteria.zip NT_alignments_no_stop_codons_from_nt/ > ../zip_zenodo.log
+
 #report gapt to nt for remaining 7 ali
 ml python/3.11.4
 for i in $(seq 1 7); do java -jar /apps/unit/KondrashovU/ladaisa/macse_v2.07.jar -prog reportGapsAA2NT \
@@ -1050,6 +1053,8 @@ sed -i 's/\.fasta//g' allstats_mean_median_var_ld_cogs_full_pairali_unique_leven
 python ../../scripts/get_ld_mean_median_var.py /flash/KondrashovU/ladaisa/cogs/full/muscle/pdistm_matrices_unique_pairwise_ali/ cogs_full_pairali_unique_levenshtein_2728 > get_ld_mean_median_var_2728.log &
 sed -i 's/\.fasta//g' allstats_mean_median_var_ld_cogs_full_pairali_unique_levenshtein_2520.csv
 
+#zip matrices for Zenodo
+zip -r cogs_full_pairwise_aligned_distances.zip pdistm_matrices_unique_pairwise_ali/ > ../zip_zenodo.log
 
 
 #----------------3. COGs dimensionality
