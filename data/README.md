@@ -193,10 +193,13 @@ This folder contains summary data tables which can be used to replicate plots.
 ## metadata/ folder - additional information about datasets (genome NCBI IDs, etc.)
 
 - metadata/Enterobacterales_genomes501.tsv
+- metadata/Vertebrates_genomes392.tsv
+  sp_number column corresponds to the first 3 digits in each sequence ID in fasta files, 
+  the remaining digits correspond to the index of the sequence in the organism's CDS file 
 
 ## Raw data
 
-Raw data can be found at Zenodo DOI:10.5281/zenodo.17623392
+Raw data can be found at Figshare: https://doi.org/10.6084/m9.figshare.31132711
 
 Raw data contains:
 
@@ -206,12 +209,12 @@ Raw data contains:
 - Raw amino acid sequences of sample 616 protein families used for pairwise alignments 
 (unlike other datasets can't be obtained by removing the gaps from alignments due to use of 
 MACSE for codon alignment)
-- Species annotation file for sequence ids 
+- Species annotation file for sequence ids (copy of the table in metadata/ folder)
 
 **Enterobacterales dataset - ncbi_enterobacterales_data.zip**
 - Amino acid alignments (created as a part of this project)
 - Nucleotide alignments for dN/dS calculation (created as a part of this project)
-- Species annotation file for sequence ids 
+- Species annotation file for sequence ids (copy of the table in metadata/ folder)
 
 **Gammaproteobacteria dataset - eggnog_gammaproteobacteria.zip**
 - Nucleotide alignments for dN/dS calculation (created as a part of this project)
