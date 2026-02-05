@@ -5,7 +5,7 @@ Repository structure:
 - README.md
 - LICENSE
 - environment.yml          
-- data/ - summary tables, small example data
+- data/ - summary tables, metadata with species' accessions, small example data
 - figures/ - final versions of all figures and images used in the paper
 - notebooks/ - Jupyter notebooks to reproduce all figures from summary tables
 - params/ - run parameters for simulations

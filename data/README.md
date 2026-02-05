@@ -194,6 +194,7 @@ This folder contains summary data tables which can be used to replicate plots.
 
 - metadata/Enterobacterales_genomes501.tsv
 - metadata/Vertebrates_genomes392.tsv
+
   sp_number column corresponds to the first 3 digits in each sequence ID in fasta files, 
   the remaining digits correspond to the index of the sequence in the organism's CDS file 
 
