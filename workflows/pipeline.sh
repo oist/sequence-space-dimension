@@ -1205,6 +1205,10 @@ ls *tree_1_exp_*_continuousF.run*pickle > None_exp_rate0.05349_scale0.0_tree_1_e
 ls *tree_2.3_exp_*_continuousF.shortleaves*pickle > exp_node_order_rate_exp_rate0.1_scale0.0_tree_2.3_exp_any_continuousF.shortleaves.list
 ls *longleaves*pickle > exp_node_order_rate_rev_exp_rate0.05_scale1.0tree_0.05_exp_any_continuousF.longleaves.list
 
+#make table with list per condition info:
+cd /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/
+printf "starlike,None_exp_rate0.05349_scale0.0_notree_0.7_gammaFitAll_any_continuousF.notree.list\nlonger,exp_node_order_rate_rev_exp_rate0.05_scale1.0tree_0.05_exp_any_continuousF.longleaves.list\nsame,None_exp_rate0.05349_scale0.0_tree_1_exp_any_continuousF.list\nshorter,exp_node_order_rate_exp_rate0.1_scale0.0_tree_2.3_exp_any_continuousF.shortleaves.list" > list_of_lists_trees_by_tree_shape.csv 
+
 #move to bucket
 mv *list /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/
 mv *csv /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/csv/ &
@@ -1316,6 +1320,10 @@ ml python/3.11.4
 sbatch --partition compute -t 10:00:00 -c 1 --mem=20G --output=/flash/KondrashovU/ladaisa/logs/simulate_evol/trees5244_count_independent_nonsyn_syn_subs_treelen.log --job-name=simu_dnsum \
 --wrap "python /bucket/KondrashovU/seq_space/simulate_evol/count_independent_nonsyn_syn_subs_treelen_from_trees.py -t /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/list_final_trees_5244.list -if /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/trees/ -of /flash/KondrashovU/ladaisa/simulate_evol/"
 
+#get root-to-leaf lengths
+ml python/3.11.4
+sbatch --partition compute -t 10:00:00 -c 1 --mem=50G --output=/flash/KondrashovU/ladaisa/logs/simulate_evol/trees4845_root_to_leaf_len.log --job-name=simu_rtl \
+--wrap "python /bucket/KondrashovU/seq_space/simulate_evol/get_root_to_leaf_length.py -t /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/list_of_lists_trees_by_tree_shape.csv -if /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/trees/ -of /flash/KondrashovU/ladaisa/simulate_evol/uniform_frac_w_dist/"
 
 #get max pairwise distance
 cd /bucket/KondrashovU/seq_space/simulate_evol/data/uniform_f_w_dist/pdistm_unique_renamed/

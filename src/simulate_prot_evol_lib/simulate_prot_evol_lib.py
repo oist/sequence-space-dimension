@@ -1675,6 +1675,22 @@ def dn_ds_from_tree(tree, return_all=True):
     else:
         return(float(np.mean(dndslist)), float(np.median(dndslist)), float(np.var(dndslist)))
 
+def get_root_to_leaf_length(treelist, path=''):
+
+    """
+    Funciton that calculates a distribution of root-to-leaf distances 
+    on a set of phylogenetic trees. 
+    """
+    
+    len_from_roots=[]
+    for treefile in treelist:
+        with open(path+treefile, "rb") as f:
+            simtree = pickle.load(f) 
+        for i in simtree.traverse():
+            if i.is_leaf():
+                len_from_roots.append(simtree.get_distance(i))
+    return(len_from_roots)
+
 
 def count_independent_nonsyn_syn_subs_treelen(treefile):
     """

@@ -198,6 +198,8 @@ This folder contains summary data tables which can be used to replicate plots.
   sp_number column corresponds to the first 3 digits in each sequence ID in fasta files, 
   the remaining digits correspond to the index of the sequence in the organism's CDS file 
 
+## trees_stats/ folder - root-to-leaf distributions for each type of simulated tree
+
 ## Raw data
 
 Raw data can be found at Figshare: https://doi.org/10.6084/m9.figshare.31132711
