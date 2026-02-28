@@ -42,6 +42,7 @@
     - simulate_evol/get_dim_dist_from_simulated_tree.py
     - simulate_evol/get_usage_from_ancestors.py
     - simulate_evol/count_independent_nonsyn_syn_subs_treelen_from_trees.py
+    - simulate_evol/get_root_to_leaf_length.py
 
 - **Simulate different sample size**
     - simulate_evol/simulate_tree_seqs_dim_for_diff_nseq.py
