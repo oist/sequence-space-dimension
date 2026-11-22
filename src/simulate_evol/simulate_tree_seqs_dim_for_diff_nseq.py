@@ -18,6 +18,17 @@ sys.path.append("../scripts/simulate_prot_evol_lib/")
 import simulate_prot_evol_lib as simevol
 
 
+def str2bool(value):
+    if isinstance(value, bool):
+        return value
+    lowered = value.strip().lower()
+    if lowered in ('true', 't', 'yes', 'y', '1'):
+        return True
+    if lowered in ('false', 'f', 'no', 'n', '0'):
+        return False
+    raise argparse.ArgumentTypeError('expected a boolean value, got %r' % value)
+
+
 if __name__ == "__main__":
 
     # Arguments
@@ -35,8 +46,8 @@ if __name__ == "__main__":
                         required=False, default=5)
     PARSER.add_argument('-w', '--win_size', type=float,  help='window size too use when calculating dimensionality', 
                         required=False, default=0.3)
-    PARSER.add_argument('-nm', '--newmatr', type=bool,  help='generate new matrices', required=False, default=True)
-    PARSER.add_argument('-s', '--starlike', type=bool, help='set to true if starlike tree', required=False, default=False)
+    PARSER.add_argument('-nm', '--newmatr', type=str2bool,  help='generate new matrices', required=False, default=True)
+    PARSER.add_argument('-s', '--starlike', type=str2bool, help='set to true if starlike tree', required=False, default=False)
 
     ARGS = vars(PARSER.parse_args())
 

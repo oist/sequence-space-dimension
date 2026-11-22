@@ -18,6 +18,17 @@ sys.path.append("../scripts/simulate_prot_evol_lib/")
 import simulate_prot_evol_lib as simevol
 
 
+def str2bool(value):
+    if isinstance(value, bool):
+        return value
+    lowered = value.strip().lower()
+    if lowered in ('true', 't', 'yes', 'y', '1'):
+        return True
+    if lowered in ('false', 'f', 'no', 'n', '0'):
+        return False
+    raise argparse.ArgumentTypeError('expected a boolean value, got %r' % value)
+
+
 if __name__ == "__main__":
 
     # Arguments
@@ -33,7 +44,7 @@ if __name__ == "__main__":
                         required=False, default="")
     PARSER.add_argument('-w', '--win_size', type=float,  help='window size too use when calculating dimensionality', 
                         required=False, default=0.3)
-    PARSER.add_argument('-m', '--matr_to_file', type=bool, help='set to True to write subsampled matrices to separate pdistm files',
+    PARSER.add_argument('-m', '--matr_to_file', type=str2bool, help='set to True to write subsampled matrices to separate pdistm files',
                          required=False, default=False)
     PARSER.add_argument('-n', '--nsamples', type=int, help='number of replicate subsamplings of the matrix',
                         required=False, default=5)
